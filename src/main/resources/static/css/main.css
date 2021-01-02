@@ -1,0 +1,162 @@
+.top
+{
+    background-color: #252525;
+    width: 100%;
+    height: 64px;
+}
+.top a
+{
+    margin-left: 20px;
+    margin-top: 18px;
+    width: 125px;
+    height: 28px;
+    font-size:20px;
+    float: left;
+}
+.top a:link{
+    color: #ffffff;
+    text-decoration:none;
+}
+.top a:hover{
+    color: #ffffff;
+    text-decoration:none;
+}
+.top a:visited{
+    color: #ffffff;
+    text-decoration: none;
+}
+.top a:active{
+    color: #ffffff;
+    text-decoration:none;
+}
+.login-box
+{
+    margin-left: 88%;
+    width: 12%;
+    height: 64px;
+}
+.login-box span
+{
+    float: left;
+    margin: 5%;
+    margin-top: 12%;
+    font-size: 18px;
+    width: 20px;
+    height: 24px;
+}
+.login-box a
+{
+    /* display: inline-block; */
+    margin: 0%;
+    margin-top: 11%;
+    color: #b7b7b7;
+    font-size: 17px;
+    text-decoration:none;
+    
+}
+.login-box a:link{
+    color: #b7b7b7;
+    text-decoration:none;
+}
+.login-box a:hover{
+    color: #b7b7b7;
+    text-decoration:none;
+}
+.login-box a:visited{
+    color: #b7b7b7;
+    text-decoration: none;
+}
+.login-box a:active{
+    color: #b7b7b7;
+    text-decoration:none;
+}
+
+.body
+{
+    width: 1280px;
+    /* background-color: blue; */
+    text-align:center;
+    height: 600px;
+    margin:0 auto;
+}
+.up
+{
+    /* background-color: blanchedalmond; */
+    width: 400px;
+    height: 42px;
+}
+.center
+{
+    width: 1280px;
+}
+.show
+{
+    /* background-color: brown; */
+    text-align:center;
+    margin:0 auto;
+    width: 600px;
+    height: 400px;
+}
+.myself_box
+{
+
+}
+.head h2
+{
+    text-align:left;
+    height: 21px;
+    line-height: 21px;
+    font-weight: 700;
+    border-left: 6px solid #528fcc;
+    padding-left: 10px;
+    font-size: 18px;
+    overflow: hidden;
+}
+.neirong
+{
+    width: 1300px; 
+    height: 550px; 
+    /* background-color: beige;  */
+    text-align:center; 
+    margin:0 auto;
+}
+.text
+{
+    padding-top: 10%;
+    padding-left: 5%;
+    text-align: left;
+    /* background-color:chartreuse; */
+    float: left;
+    width: 650px;
+    height: 550px;
+}
+.erweima
+{
+    /* background-color: #528fcc; */
+    float:right;
+    width: 650px;
+    height: 550px;
+}
+.erweima img
+{
+    margin-top: 8%;
+    width: 250px;
+    height: 250px;
+}
+.updata
+{
+    padding-top: 4%;
+    padding-left: 40%;
+    text-align: left;
+}
+.upload
+{
+    text-align:center; 
+    margin:0 auto;
+    margin-top: 10%;
+    width: 660px;
+}
+.upload h3
+{
+    text-align: center;
+}

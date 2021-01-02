@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://s3.pstatp.com/cdn/expire-1-M/echarts/4.2.1-rc.3/echarts.min.js"
+            type="application/javascript"></script>
+    <script src="https://s0.pstatp.com/cdn/expire-1-M/jquery/3.4.0/jquery.js" type="application/javascript"></script>
+    <title>个人中心</title>
+</head>
+<body>
+    <div class="top">
+        <a href="#">个人名片系统</a>
+        <div class="login-box">
+            <span class="glyphicon glyphicon-user" style="color: white"></span>
+            <a id="user" href="/exit" th:text="${application.user}" title="点击退出">啦啦啦</a>
+        </div>
+    </div>
+    <div class="body">
+        <div class="up">
+            <ul class="nav nav-tabs nav-justified">
+                <li id="x1" role="presentation" class="active"><a href="#" onclick="dianji(1)">个人名片</a></li>
+                <li id="x2" role="presentation" ><a href="#" onclick="dianji(2)">编辑名片</a></li>
+                <li id="x3" role="presentation" ><a href="#" onclick="dianji(3)">联系人</a></li>
+                <li id="x4" role="presentation" ><a href="#" onclick="dianji(4)">扫码添加</a></li>
+              </ul>
+        </div>
+        <div id="xianshi1">
+            <div class="neirong">
+                <div class="text" >
+                    <h3>姓　　名：<span th:text="${application.userdata.getUser_xinming()}"></span></h3>
+                    <h3>联系方式：<span th:text="${application.userdata.getUser_phone()}"></span></h3>
+                    <h3>职　　位：<span th:text="${application.userdata.getUser_position()}"></span></h3>
+                    <h3>公司名称：<span th:text="${application.userdata.getUser_company()}"></span></h3>
+                    <h3>公司地址：<span th:text="${application.userdata.getUser_addr()}"></span></h3>
+                </div>
+                <div class="erweima">
+                    <h2>个人信息二维码</h2>
+                    <img src="" alt="" th:src="'/QR?id='+${application.id}">
+                </div>
+            </div>
+        </div>
+        <div id="xianshi2" style="display:none;">
+            <div class="neirong">
+                <div class="updata">
+                    <form action="/updata" id="updata">
+                        <div class="input-group input-group-sm">
+                            <span>姓　　名：</span>
+                            <input  type="text" class="form-control" name="user_xinming" th:value="${application.userdata.getUser_xinming()}">
+                        </div>
+                        <br>
+                        <div class="input-group input-group-sm">
+                            <span>联系方式：</span>
+                            <input  type="text" class="form-control" name="user_phone" th:value="${application.userdata.getUser_phone()}">
+                        </div>
+                        <br>
+                        <div class="input-group input-group-sm">
+                            <span>职　　位：</span>
+                            <input type="text" class="form-control" name="user_position" th:value="${application.userdata.getUser_position()}">
+                        </div>
+                        <br>
+                        <div class="input-group input-group-sm">
+                            <span>公司名称：</span>
+                            <input type="text" class="form-control" name="user_company" th:value="${application.userdata.getUser_company()}">
+                        </div>
+                        <br>
+                        <div class="input-group input-group-sm">
+                            <span>公司地址：</span>
+                            <input type="text" class="form-control" name="user_addr" th:value="${application.userdata.getUser_addr()}">
+                        </div>
+                        <br>
+                        <div class="sub">
+                            <div class="btn-group" role="group" aria-label="..." >
+                                <button type="button" class="btn btn-primary" style="margin-left: 12%;" onclick="document.getElementById('updata').submit()">　　　　　保 存　　　　　</button>
+                            </div> 
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        <div id="xianshi3" style="text-align:left;display:none;">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>姓　　名</th>
+                        <th>联系方式</th>
+                        <th>职　　位</th>
+                        <th>公司名称</th>
+                        <th>公司地址</th>
+                        <!--th>概念题材</th-->
+                        <th class="zx" style="width: 44px;">删除</th>
+                    </tr>
+                    </thead>
+                    <tbody align="left">
+                    <tr th:each="data:${contactdata}">
+                        <td th:text="${data.getUser_xinming()}"></td>
+                        <td th:text="${data.getUser_phone()}"></td>
+                        <td th:text="${data.getUser_position()}"></td>
+                        <td th:text="${data.getUser_company()}"></td>
+                        <td th:text="${data.getUser_addr()}"></td>
+                        <td style="display:none;" th:text="${data.getUser_name()}"></td>
+                        <td><a href="javascript:void(0)" onclick="del(this)"><span class="glyphicon glyphicon-remove"></span></a></td>
+                    </tr>
+                    </tbody>
+            </table>
+        </div>
+        <div id="xianshi4" style="display:none; ">
+            <div class="upload">
+                <form action="/addpeople" enctype="multipart/form-data" method="post">
+                    <h3>用上传模拟扫二维码添加名片</h3>
+                    <br>
+                    <input type="file" name="img" style="margin-left: 40%;"/>
+                    <br>
+                    <input type="submit" value="扫码添加"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    document.onreadystatechange = function () {
+        if (document.readyState == "complete") {
+            document.body.style.display = "block";
+        } else {
+            document.body.style.display = "none";
+        };
+    };
+    $(function () {
+        var user = $("#user").html()
+
+
+    })
+    function dianji(data){
+        var XS1= document.getElementById("xianshi1");
+        var XS2= document.getElementById("xianshi2");
+        var XS3= document.getElementById("xianshi3");
+        var XS4= document.getElementById("xianshi4");
+        var X1= document.getElementById("x1");
+        var X2= document.getElementById("x2");
+        var X3= document.getElementById("x3");
+        var X4= document.getElementById("x4");
+        if(data == 1)
+        {
+            XS4.setAttribute('style','display:none');
+            XS3.setAttribute('style','display:none');
+            XS2.setAttribute('style','display:none');
+            XS1.setAttribute('style','display:');
+            X1.setAttribute('class','active');
+            X2.removeAttribute('class');
+            X3.removeAttribute('class');
+            X4.removeAttribute('class');
+        }
+        else if(data == 2)
+        {
+            XS4.setAttribute('style','display:none');
+            XS3.setAttribute('style','display:none');
+            XS1.setAttribute('style','display:none');
+            XS2.setAttribute('style','display:');
+            X2.setAttribute('class','active');
+            X1.removeAttribute('class');
+            X3.removeAttribute('class');
+            X4.removeAttribute('class');
+        }
+        else if(data == 3)
+        {
+            XS4.setAttribute('style','display:none');
+            XS2.setAttribute('style','display:none');
+            XS1.setAttribute('style','display:none');
+            XS3.setAttribute('style','display:');
+            X3.setAttribute('class','active');
+            X1.removeAttribute('class');
+            X2.removeAttribute('class');
+            X4.removeAttribute('class');
+        }
+        else
+        {
+            XS3.setAttribute('style','display:none');
+            XS2.setAttribute('style','display:none');
+            XS1.setAttribute('style','display:none');
+            XS4.setAttribute('style','display:');
+            X4.setAttribute('class','active');
+            X1.removeAttribute('class');
+            X2.removeAttribute('class');
+            X3.removeAttribute('class');
+        }
+    }
+    function del(t) {
+        var u_name = $("#user").html()
+        var c_name= $(t).parent().prev().html();
+        window.location.href="/del?u=" + u_name + "&c=" + c_name;
+    }
+</script>
+</html>
